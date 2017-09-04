@@ -1,0 +1,8 @@
+{{#partial "contenido"}}
+		<select>
+			{{#each supermercados}}
+			<option value={{razonSocial()}}> {{razonSocial}}</option>
+			{{/each}}
+		</select>
+{{/partial}}
+{{>base.hbs}}
