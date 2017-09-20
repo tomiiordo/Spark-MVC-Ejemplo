@@ -2,14 +2,24 @@ package model;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import entities.*;
 
 public class SupermecadoModel {
 	private List<Supermercado> supermercados;
-
-	public SupermecadoModel() {
+	private static SupermecadoModel instance = null;
+	
+	public static SupermecadoModel getInstance(){
+		if(instance==null){
+			instance = new SupermecadoModel();
+		}
+		return instance;
+	}
+	
+	private SupermecadoModel() {
 		this.supermercados = new LinkedList<>();
+		this.boot();
 	}
 	
 	public void boot(){
@@ -61,5 +71,15 @@ public class SupermecadoModel {
 	
 	public List<Supermercado> getAll(){
 		return this.supermercados;
+	}
+	
+	public Supermercado get(String nombreSupermercado){
+		List<Supermercado> lista = this.supermercados.stream().filter(s->s.getRazonSocial().equals(nombreSupermercado)).collect(Collectors.toList());
+		return lista.get(0);
+	}
+	
+	public Venta getVenta(String nombreSupermercado, int idVenta){
+		Supermercado market = this.get(nombreSupermercado);
+		return market.getVentaById(idVenta);
 	}
 }

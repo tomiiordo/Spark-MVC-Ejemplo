@@ -12,8 +12,7 @@ public class InicioController {
 	private Map<String, Object> model=new HashMap<>();
 	
 	public ModelAndView inicio(Request req, Response res){
-		SupermecadoModel modelSuper = new SupermecadoModel();
-		modelSuper.boot();
+		SupermecadoModel modelSuper = SupermecadoModel.getInstance();
 		model.put("supermercados", modelSuper.getAll());
 		return new ModelAndView(model, "inicio.hbs");
 	}

@@ -21,6 +21,8 @@ public class Router {
 		VentasController ventasController = new VentasController();
 		
 		Spark.get("/", inicioController::inicio, engine);
-		Spark.get("/ventas", ventasController::listarVentas, engine);
+		Spark.post("/ventas", ventasController::listarVentas, engine);
+		Spark.get("/ventaDetalle/:supermercado/:venta", ventasController::verdetalleVenta2,engine);
+		Spark.post("/ventaDetalle", ventasController::verdetalleVenta, engine);
 	}
 }

@@ -2,6 +2,7 @@ package entities;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Supermercado {
 	private List<Venta> ventas;
@@ -28,4 +29,7 @@ public class Supermercado {
 		return ventas;
 	}
 
+	public Venta getVentaById(int idVenta){
+		return this.ventas.stream().filter(v->v.getId()==idVenta).collect(Collectors.toList()).get(0);
+	}
 }
